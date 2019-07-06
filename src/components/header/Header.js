@@ -1,10 +1,11 @@
 import React from "react";
-import { NavLink,Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assests/crown.svg";
 import { auth } from "../../firebase/firebase.utils";
+import { connect } from "react-redux";
 import "./header.scss";
 
-const Header = ({ user }) => {
+const Header = ({ currentUser }) => {
   return (
     <div className="header">
       <NavLink to="/" className="logo-container">
@@ -17,9 +18,25 @@ const Header = ({ user }) => {
         <NavLink to="/contact" className="options">
           CONTACT
         </NavLink>
-        {user?(<div className="option" onClick={()=>auth.signOut()}>Sign Out</div>):(<Link  className="option"to="/signin">Sign In</Link>)}
+        {currentUser ? (
+          <div className="option" onClick={() => auth.signOut()}>
+            Sign Out
+          </div>
+        ) : (
+          <Link className="option" to="/signin">
+            Sign In
+          </Link>
+        )}
       </div>
     </div>
   );
 };
-export default Header;
+
+const mapStateToProps = state => {
+    return{
+    currentUser: state.user.currentUser
+    }
+  
+}
+
+export default connect(mapStateToProps)(Header);
