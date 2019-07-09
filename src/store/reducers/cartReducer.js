@@ -1,4 +1,4 @@
-import {addItemToCart} from "../cartUtils";
+import { addItemToCart } from "../cartUtils";
 const initState = { hidden: true, cartItems: [] };
 
 const cartReducer = (state = initState, action) => {
@@ -11,7 +11,7 @@ const cartReducer = (state = initState, action) => {
     case "ADD_ITEM":
       return {
         ...state,
-        cartItems:addItemToCart(state.cartItems,action.item)
+        cartItems: addItemToCart(state.cartItems, action.item)
       };
     default:
       return state;
