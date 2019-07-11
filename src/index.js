@@ -9,19 +9,25 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "./store/reducers/rootReducer";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 
-const store = createStore(
+ const store = createStore(
   rootReducer,
   compose(
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
+ const persistor = persistStore(store);
 
 ReactDOM.render(
   <BrowserRouter>
+   <PersistGate persistor={persistor}>
     <Provider store={store}>
       <App />
+      
     </Provider>
+    </PersistGate>
   </BrowserRouter>,
   document.getElementById("root")
 );
