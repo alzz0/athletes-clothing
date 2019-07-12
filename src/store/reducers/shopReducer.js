@@ -1,5 +1,6 @@
-export const shop_data = {
-  hats:{
+const initState=
+[
+          {
     id: 1,
     title: "Hats",
     routeName: "hats",
@@ -60,7 +61,7 @@ export const shop_data = {
       }
     ]
   },
-  sneakers:{
+  {
     id: 2,
     title: "Sneakers",
     routeName: "sneakers",
@@ -115,7 +116,7 @@ export const shop_data = {
       }
     ]
   },
-  jackets:{
+  {
     id: 3,
     title: "Jackets",
     routeName: "jackets",
@@ -152,7 +153,7 @@ export const shop_data = {
       }
     ]
   },
-  womens:{
+  {
     id: 4,
     title: "Womens",
     routeName: "womens",
@@ -201,7 +202,7 @@ export const shop_data = {
       }
     ]
   },
-  mens:{
+  {
     id: 5,
     title: "Mens",
     routeName: "mens",
@@ -244,4 +245,13 @@ export const shop_data = {
       }
     ]
   }
+    ]
+
+
+const shopReducer=(state=initState,action)=>{
+    switch(action.type){
+        default:
+            return state
+    }
 }
+export default shopReducer
